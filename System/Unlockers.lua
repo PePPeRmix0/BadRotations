@@ -2,6 +2,146 @@ function br:loadUnlockerAPI()
     local unlocked = false
     local class = br.class
     -- EWT Unlocker
+	if __LB__ then
+		
+		TagsToUnlock = {'CanLootUnit','ClearFocus','GetBonusBarOffset','GetCombatRating','GetCursorPosition','IsShiftKeyDown','PlaySound','GetScreenHeight','GetContainerItemInfo','CheckInteractDistance','GetInventoryItemLink','GetLocale','GetNumSpellTabs','GetSpellInfo','ClearTarget','IsAutoRepeatSpell','CanExitVehicle','AscendStop','GetItemSpell','GetItemInfo','CancelShapeshiftForm','GetMastery','CastSpell','CastShapeshiftForm','CastSpellByName','GetSpellDescription','CastSpellByID','GetCurrentKeyBoardFocus','IsMounted','StartAttack','GetInventoryItemID','GetUnitSpeed','PetFollow','DisableSpellAutocast','StopAttack','CancelUnitBuff','IsFlying','GetCVar','GetBinding','GetSpellCount','GetInstanceInfo','GetTotemInfo','GetHaste','GetInventorySlotInfo','GetItemCooldown','AttackTarget','IsInInstance','GetCombatRatingBonus','GetMasteryEffect','GetRaidTargetIndex','IsSwimming','UnitAffectingCombat','GetBindingKey','GetSpecialization','PetDismiss','IsPetActive','IsInRaid','RunMacro','GetSpellCooldown','GetWeaponEnchantInfo','MouselookStart','RunMacroText','GetPetActionInfo','UnitCanAttack','IsSpellKnown','GetShapeshiftForm','JumpOrAscendStart','GetMinimapZoneText','GetTotemTimeLeft','PetStopAttack','SendChatMessage','GetVersatilityBonus','IsCurrentSpell','GetCallPetSpellInfo','GetNumGroupMembers','IsFalling','UnitCastingInfo','UnitExists','UnitGroupRolesAssigned','UnitIsDead','UnitGUID','IsResting','C_LossOfControl.GetNumEvents','UnitInVehicle','IsMouselooking','LearnTalent','SpellStopTargeting','UnitIsDeadOrGhost','UnitBuff','TargetLastEnemy','UnitChannelInfo','GetNumLootItems','IsUsableSpell','IsStealthed','UnitIsFriend','SpellStopCasting','SpellIsTargeting','UnitIsPlayer','UseItemByName','GetItemCount','UnitIsCharmed','GetRealZoneText','UnitIsUnit','GetMouseFocus','GetSpellAutocast','UnitOnTaxi','UnitThreatSituation','GetActiveSpecGroup','GetFunctionCPUUsage','CloseLoot','UnitClass','GetAddOnMetadata','GetAddOnInfo','AcceptProposal','UnitPower','GetSpellBaseCooldown','GetSpecializationInfo','GetItemGem','GetRuneCount','GetNumShapeshiftForms','UnitDebuff','C_PetJournal.GetNumPets','GetRaidRosterInfo','FocusUnit','IsMouseButtonDown','UnitIsVisible','C_TaskQuest.GetQuestsForPlayerByMapID','UnitClassification','UnitHealth','GetAchievementInfo','UnitAura','EJ_GetEncounterInfo','UnitDetailedThreatSituation','CloseMerchant','GetContainerItemID','Dismount','GetComboPoints','IsSpellInRange','IsLeftAltKeyDown','FindSpellBookSlotBySpellID','GetInstanceLockTimeRemaining','UnitRace','GetSpellBookItemInfo','GetContainerNumSlots','C_PetBattles.ChangePet','C_PetBattles.CanActivePetSwapOut','C_PetBattles.GetAbilityInfo','C_PetJournal.GetPetInfoByIndex','C_PetBattles.GetActivePet','C_PetJournal.GetPetLoadOutInfo','IsUsableItem','InteractUnit','PlaceRaidMarker','IsPassiveSpell','UnitReaction','IsAltKeyDown','ReloadUI'}
+		for k,v in pairs(TagsToUnlock) do
+			unlocker(v,true)
+		end
+        GetObjectCountBR = GetObjectCount
+        -- Files
+        GetDirectoryFiles = lb.GetFiles
+        ReadFile = lb.ReadFile
+        WriteFile = lb.WriteFile
+        CreateDirectory = lb.CreateDirectory
+        DirectoryExists = lb.DirectoryExists
+        GetWoWDirectory = lb.GetGameDirectory
+		ObjectPosition = lb.ObjectPosition
+		ObjectPointer = lb.ObjectPointer
+		
+		
+		-----
+			
+		AuraUtil = {}
+		AuraUtil.FindAuraByName = function(...)
+			return lb.UnitTagHandler(lb.Unlock, _G.AuraUtil["FindAuraByName"], ...)
+		end
+		ObjectGUID = br.UnitGUID
+		ObjectIsUnit = function(...)
+			local ObjType = lb.ObjectType(...)
+			return ObjType == 5 or ObjType == 6 or ObjType == 7
+		end
+		ObjectIsGameObject = function(...)
+			local ObjType = lb.ObjectType(...)
+			return ObjType == 8 or ObjType == 11
+		end
+		ObjectID = lb.ObjectId
+		UnitMovementFlags = lb.UnitMovementFlags
+		TraceLine = lb.Raycast
+		UnitTarget = lb.UnitTarget
+		IsQuestObject = function(obj)
+			return false, false
+		end
+		UnitCastID = function(...)
+			local CastSpellID, CastTargetGUID, timeLeft, NotInterruptible = lb.UnitCastingInfo(...)
+			local ChannelSpellID, ChannelTargetGUID, timeLeft, NotInterruptible = lb.UnitChannelInfo(...)
+			return CastSpellID, ChannelSpellID, CastTargetGUID, ChannelTargetGUID
+		end
+		GetKeyState = lb.GetKeyState
+		WorldToScreen = function(wX, wY, wZ)
+			local ResolutionCoef = _G.WorldFrame:GetWidth() / lb.GetWindowSize()
+			local sX, sY = lb.WorldToScreen(wX, wY, wZ)
+			if sX and sY then
+				return sX * ResolutionCoef, -sY * ResolutionCoef
+			else
+				return sX, sY
+			end
+		end
+		ScreenToWorld = function()
+			return 0, 0
+		end
+		
+		--GetDistanceBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2)
+		--	return math.sqrt(math.pow(X2 - X1, 2) + math.pow(Y2 - Y1, 2) + math.pow(Z2 - Z1, 2))
+		--end
+
+		GetAnglesBetweenObjects = function(Object1, Object2)
+			local X1, Y1, Z1 = br._G.ObjectPosition(Object1)
+			local X2, Y2, Z2 = br._G.ObjectPosition(Object2)
+			-- print(Unit1,X1,Y1,Z1,unit2,X2,Y2,Z2)
+			return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi
+		end
+
+		GetAnglesBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2)
+			return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi
+		end
+
+		GetPositionFromPosition = function(X, Y, Z, Distance, AngleXY, AngleXYZ)
+			return math.cos(AngleXY) * Distance + X, math.sin(AngleXY) * Distance + Y, math.sin(AngleXYZ) * Distance + Z
+		end
+
+		GetPositionBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2, DistanceFromPosition1)
+			local AngleXY, AngleXYZ = b.GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2)
+			return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ)
+		end
+
+		GetPositionBetweenObjects = function(unit1, unit2, DistanceFromPosition1)
+			local X1, Y1, Z1 = br._G.ObjectPosition(unit1)
+
+			local X2, Y2, Z2 = br._G.ObjectPosition(unit2)
+			local AngleXY, AngleXYZ = b.GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2)
+			return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ)
+		end
+		
+		ObjectFacing = lb.ObjectFacing
+		FaceDirection = function(arg)
+			if type(arg) == "number" then
+				lb.SetPlayerAngles(arg)
+			else
+				arg = GetAnglesBetweenObjects("player", arg)
+				lb.SetPlayerAngles(arg)
+			end
+		end
+		function ObjectIsFacing(obj1, obj2, degrees)
+			local Facing = lb.ObjectFacing(obj1)
+			local AngleToUnit = GetAnglesBetweenObjects(obj1, obj2)
+			local AngleDifference = Facing > AngleToUnit and Facing - AngleToUnit or AngleToUnit - Facing
+			local ShortestAngle = AngleDifference < math.pi and AngleDifference or math.pi * 2 - AngleDifference
+			degrees = degrees and br.rad(degrees) / 2 or math.pi / 2
+			return ShortestAngle < degrees
+		end
+		-- br.getFacing = ObjectFacingObject
+		UnitCreator = lb.ObjectCreator
+		ObjectName = lb.ObjectName
+		GetDistanceBetweenPositions = lb.GetDistance3D
+		GetMapId = lb.GetMapId
+		UnitIsMounted = function(...)
+			return lb.UnitHasFlag(..., lb.EUnitFlags.Mount)
+		end
+		SendMovementUpdate = lb.UpdatePlayerMovement
+
+		ObjectDynamicFlags = lb.ObjectDynamicFlags
+
+		IsHackEnabled = function(...)
+			--print(...)
+			return false
+		end
+		UnitCombatReach = lb.UnitCombatReach
+		GetMousePosition = function()
+			local cur_x, cur_y = br.GetCursorPosition()
+			return cur_x, cur_y
+		end
+		ObjectIsVisible = lb.ObjectExists
+		ObjectExists = lb.ObjectExists
+		-- br.GetUnitIsVisible = lb.ObjectExists
+		IsAoEPending = lb.IsAoEPending
+		ClickPosition = lb.ClickPosition
+		UnitBoundingRadius = lb.UnitBoundingRadius
+	
+	----
+		unlocked = true
+	end
+	
     if EasyWoWToolbox ~= nil then -- Native Support - API found at https://ewtwow.com/EWT/ewt.lua
         -- Active Player
         StopFalling = StopFalling
@@ -334,7 +474,7 @@ function br:loadUnlockerAPI()
         -- -- Misc
         -- SendHTTPRequest = function() return true end
         -- GetKeyState = function() return false end
-        unlocked = false
+        --unlocked = false
     end
     -- Set Spell Queue Window 
     if class == 8 or class == 9 then
@@ -344,6 +484,43 @@ function br:loadUnlockerAPI()
     end
     return unlocked
 end
+
+local Objects = {}
+
+function GetObjectCount(_,_)
+	Objects = __LB__.GetObjects(9999)
+	return #Objects, true
+end
+
+function GetObjectWithIndex(i)
+	return Objects[i]
+end
+
+function ObjectIsUnit(obj)
+	if __LB__.ObjectType(obj) == 5 then return true end
+	
+	return false
+end
+
+function ObjectIsPlayer(obj)
+	if __LB__.ObjectType(obj) == 6 then return true end
+	
+	return false
+end
+
+function unlocker(method,tag)
+	if tag then 
+		lb.RunString(method.."Old = "..method..";	"..method.." = function (...) return lb.UnitTagHandler(_G."..method.."Old, ...); end")
+		return
+	end
+	lb.RunString(method.."Old = "..method..";	"..method.." = function (...) return lb.Unlock(_G."..method.."Old, ...); end")
+end
+
+function GetObjectWithGUID(n)
+	return n
+end
+
+
 
 -- Checks for BR Out of Date with current version based on TOC file
 local brlocVersion
