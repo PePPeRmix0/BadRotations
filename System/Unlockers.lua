@@ -13,13 +13,13 @@ function br:loadUnlockerAPI()
 		'UnitGUID','IsResting','C_LossOfControl.GetNumEvents','UnitInVehicle','IsMouselooking','LearnTalent','SpellStopTargeting',
 		'UnitIsDeadOrGhost',
 		'UnitBuff','TargetLastEnemy','UnitChannelInfo','GetNumLootItems','IsUsableSpell','IsStealthed',
-		'UnitIsFriend',
+		--'UnitIsFriend',
 		'SpellStopCasting','SpellIsTargeting',
 		'UnitIsPlayer',
 		'UseItemByName','GetItemCount',
 		'UnitIsCharmed',
 		'GetRealZoneText',
-		'UnitIsUnit',
+		--'UnitIsUnit',
 		'GetMouseFocus','GetSpellAutocast','UnitOnTaxi','UnitThreatSituation','GetActiveSpecGroup','GetFunctionCPUUsage','CloseLoot','UnitClass','GetAddOnMetadata','GetAddOnInfo','AcceptProposal','UnitPower','GetSpellBaseCooldown','GetSpecializationInfo','GetItemGem','GetRuneCount','GetNumShapeshiftForms','UnitDebuff','C_PetJournal.GetNumPets',
 		'GetRaidRosterInfo','FocusUnit','IsMouseButtonDown','UnitIsVisible','C_TaskQuest.GetQuestsForPlayerByMapID','UnitClassification','UnitHealth','GetAchievementInfo','UnitAura','EJ_GetEncounterInfo','UnitDetailedThreatSituation','CloseMerchant','GetContainerItemID','Dismount','GetComboPoints','IsSpellInRange','IsLeftAltKeyDown','FindSpellBookSlotBySpellID','GetInstanceLockTimeRemaining','UnitRace','GetSpellBookItemInfo','GetContainerNumSlots','C_PetBattles.ChangePet','C_PetBattles.CanActivePetSwapOut','C_PetBattles.GetAbilityInfo','C_PetJournal.GetPetInfoByIndex','C_PetBattles.GetActivePet','C_PetJournal.GetPetLoadOutInfo','IsUsableItem','InteractUnit','PlaceRaidMarker','IsPassiveSpell','UnitReaction','IsAltKeyDown','ReloadUI'}
 		for k,v in pairs(TagsToUnlock) do
@@ -500,6 +500,29 @@ function br:loadUnlockerAPI()
         if unlocked and br.prevQueueWindow ~= 0 then RunMacroText("/console SpellQueueWindow 0") end
     end
     return unlocked
+end
+TESTINGHHIT = nil
+function NamePlateDriverMixin:UpdateInsetsForType(namePlateType, namePlateFrameBase)
+	--TESTINGHHIT = namePlateType
+	print(namePlateType)
+	--for k,v in pairs(namePlateType) do
+	--	print(k)
+	--end
+	-- Only update the options for each nameplate type once, these can change at run time
+	-- depending on any options that change where pieces of the nameplate are positioned (scale is the main one)
+	if not self.preferredInsets[namePlateType] then
+		local setInsetFn = self.namePlateSetInsetFunctions[namePlateType];
+		if setInsetFn then
+			-- NOTE: Insets should push in from the edge, but avoid using abs in case they actually push outside, it will be handled properly.
+			self.preferredInsets[namePlateType] = true;
+			setInsetFn(namePlateFrameBase:GetPreferredInsets());
+		end
+	end
+end
+
+function TargetFrameToT:Show()
+	--print(self)
+	return
 end
 
 function NamePlateBaseMixin:GetPreferredInsets()
