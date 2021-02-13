@@ -19,6 +19,7 @@ function br:loadUnlockerAPI()
 		'UseItemByName','GetItemCount',
 		'UnitIsCharmed',
 		'GetRealZoneText',
+		'C_NamePlate.SetNamePlateEnemyPreferredClickInsets',
 		--'UnitIsUnit',
 		'GetMouseFocus','GetSpellAutocast','UnitOnTaxi','UnitThreatSituation','GetActiveSpecGroup','GetFunctionCPUUsage','CloseLoot','UnitClass','GetAddOnMetadata','GetAddOnInfo','AcceptProposal','UnitPower','GetSpellBaseCooldown','GetSpecializationInfo','GetItemGem','GetRuneCount','GetNumShapeshiftForms','UnitDebuff','C_PetJournal.GetNumPets',
 		'GetRaidRosterInfo','FocusUnit','IsMouseButtonDown','UnitIsVisible','C_TaskQuest.GetQuestsForPlayerByMapID','UnitClassification','UnitHealth','GetAchievementInfo','UnitAura','EJ_GetEncounterInfo','UnitDetailedThreatSituation','CloseMerchant','GetContainerItemID','Dismount','GetComboPoints','IsSpellInRange','IsLeftAltKeyDown','FindSpellBookSlotBySpellID','GetInstanceLockTimeRemaining','UnitRace','GetSpellBookItemInfo','GetContainerNumSlots','C_PetBattles.ChangePet','C_PetBattles.CanActivePetSwapOut','C_PetBattles.GetAbilityInfo','C_PetJournal.GetPetInfoByIndex','C_PetBattles.GetActivePet','C_PetJournal.GetPetLoadOutInfo','IsUsableItem','InteractUnit','PlaceRaidMarker','IsPassiveSpell','UnitReaction','IsAltKeyDown','ReloadUI'}
