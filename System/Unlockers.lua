@@ -4,7 +4,24 @@ function br:loadUnlockerAPI()
     -- EWT Unlocker
 	if __LB__ then
 		
-		TagsToUnlock = {'TargetUnit','CanLootUnit','ClearFocus','GetBonusBarOffset','GetCombatRating','GetCursorPosition','IsShiftKeyDown','PlaySound','GetScreenHeight','GetContainerItemInfo','CheckInteractDistance','GetInventoryItemLink','GetLocale','GetNumSpellTabs','GetSpellInfo','ClearTarget','IsAutoRepeatSpell','CanExitVehicle','AscendStop','GetItemSpell','GetItemInfo','CancelShapeshiftForm','GetMastery','CastSpell','CastShapeshiftForm','CastSpellByName','GetSpellDescription','CastSpellByID','GetCurrentKeyBoardFocus','IsMounted','StartAttack','GetInventoryItemID','GetUnitSpeed','PetFollow','DisableSpellAutocast','StopAttack','CancelUnitBuff','IsFlying','GetCVar','GetBinding','GetSpellCount','GetInstanceInfo','GetTotemInfo','GetHaste','GetInventorySlotInfo','GetItemCooldown','AttackTarget','IsInInstance','GetCombatRatingBonus','GetMasteryEffect','GetRaidTargetIndex','IsSwimming','UnitAffectingCombat','GetBindingKey','GetSpecialization','PetDismiss','IsPetActive','IsInRaid','RunMacro','GetSpellCooldown','GetWeaponEnchantInfo','MouselookStart','RunMacroText','GetPetActionInfo','UnitCanAttack','IsSpellKnown','GetShapeshiftForm','JumpOrAscendStart','GetMinimapZoneText','GetTotemTimeLeft','PetStopAttack','SendChatMessage','GetVersatilityBonus','IsCurrentSpell','GetCallPetSpellInfo','GetNumGroupMembers','IsFalling','UnitCastingInfo','UnitExists','UnitGroupRolesAssigned','UnitIsDead','UnitGUID','IsResting','C_LossOfControl.GetNumEvents','UnitInVehicle','IsMouselooking','LearnTalent','SpellStopTargeting','UnitIsDeadOrGhost','UnitBuff','TargetLastEnemy','UnitChannelInfo','GetNumLootItems','IsUsableSpell','IsStealthed','UnitIsFriend','SpellStopCasting','SpellIsTargeting','UnitIsPlayer','UseItemByName','GetItemCount','UnitIsCharmed','GetRealZoneText','UnitIsUnit','GetMouseFocus','GetSpellAutocast','UnitOnTaxi','UnitThreatSituation','GetActiveSpecGroup','GetFunctionCPUUsage','CloseLoot','UnitClass','GetAddOnMetadata','GetAddOnInfo','AcceptProposal','UnitPower','GetSpellBaseCooldown','GetSpecializationInfo','GetItemGem','GetRuneCount','GetNumShapeshiftForms','UnitDebuff','C_PetJournal.GetNumPets','GetRaidRosterInfo','FocusUnit','IsMouseButtonDown','UnitIsVisible','C_TaskQuest.GetQuestsForPlayerByMapID','UnitClassification','UnitHealth','GetAchievementInfo','UnitAura','EJ_GetEncounterInfo','UnitDetailedThreatSituation','CloseMerchant','GetContainerItemID','Dismount','GetComboPoints','IsSpellInRange','IsLeftAltKeyDown','FindSpellBookSlotBySpellID','GetInstanceLockTimeRemaining','UnitRace','GetSpellBookItemInfo','GetContainerNumSlots','C_PetBattles.ChangePet','C_PetBattles.CanActivePetSwapOut','C_PetBattles.GetAbilityInfo','C_PetJournal.GetPetInfoByIndex','C_PetBattles.GetActivePet','C_PetJournal.GetPetLoadOutInfo','IsUsableItem','InteractUnit','PlaceRaidMarker','IsPassiveSpell','UnitReaction','IsAltKeyDown','ReloadUI','AuraUtil.ForEachAura'}
+		TagsToUnlock = {'TargetUnit','CanLootUnit','ClearFocus','GetBonusBarOffset','GetCombatRating',
+		--'GetCursorPosition',
+		'UseAction',
+		'IsShiftKeyDown','PlaySound','GetScreenHeight','GetContainerItemInfo','CheckInteractDistance','GetInventoryItemLink',
+		'GetNumSpellTabs','GetSpellInfo','ClearTarget','IsAutoRepeatSpell','CanExitVehicle','AscendStop','GetItemSpell','GetItemInfo','CancelShapeshiftForm','GetMastery','CastSpell','CastShapeshiftForm','CastSpellByName','GetSpellDescription','CastSpellByID','GetCurrentKeyBoardFocus','IsMounted','StartAttack','GetInventoryItemID','GetUnitSpeed','PetFollow','DisableSpellAutocast','StopAttack','CancelUnitBuff','IsFlying','GetCVar','GetBinding','GetSpellCount','GetInstanceInfo','GetTotemInfo','GetHaste','GetInventorySlotInfo','GetItemCooldown','AttackTarget','IsInInstance','GetCombatRatingBonus','GetMasteryEffect','GetRaidTargetIndex','IsSwimming','UnitAffectingCombat','GetBindingKey','GetSpecialization','PetDismiss','IsPetActive','IsInRaid','RunMacro','GetSpellCooldown','GetWeaponEnchantInfo','MouselookStart','RunMacroText','GetPetActionInfo','UnitCanAttack','IsSpellKnown','GetShapeshiftForm','JumpOrAscendStart','GetMinimapZoneText','GetTotemTimeLeft','PetStopAttack','SendChatMessage','GetVersatilityBonus','IsCurrentSpell','GetCallPetSpellInfo','GetNumGroupMembers','IsFalling','UnitCastingInfo','UnitExists','UnitGroupRolesAssigned',
+		'UnitIsDead',
+		'UnitGUID','IsResting','C_LossOfControl.GetNumEvents','UnitInVehicle','IsMouselooking','LearnTalent','SpellStopTargeting',
+		'UnitIsDeadOrGhost',
+		'UnitBuff','TargetLastEnemy','UnitChannelInfo','GetNumLootItems','IsUsableSpell','IsStealthed',
+		'UnitIsFriend',
+		'SpellStopCasting','SpellIsTargeting',
+		'UnitIsPlayer',
+		'UseItemByName','GetItemCount',
+		'UnitIsCharmed',
+		'GetRealZoneText',
+		'UnitIsUnit',
+		'GetMouseFocus','GetSpellAutocast','UnitOnTaxi','UnitThreatSituation','GetActiveSpecGroup','GetFunctionCPUUsage','CloseLoot','UnitClass','GetAddOnMetadata','GetAddOnInfo','AcceptProposal','UnitPower','GetSpellBaseCooldown','GetSpecializationInfo','GetItemGem','GetRuneCount','GetNumShapeshiftForms','UnitDebuff','C_PetJournal.GetNumPets',
+		'GetRaidRosterInfo','FocusUnit','IsMouseButtonDown','UnitIsVisible','C_TaskQuest.GetQuestsForPlayerByMapID','UnitClassification','UnitHealth','GetAchievementInfo','UnitAura','EJ_GetEncounterInfo','UnitDetailedThreatSituation','CloseMerchant','GetContainerItemID','Dismount','GetComboPoints','IsSpellInRange','IsLeftAltKeyDown','FindSpellBookSlotBySpellID','GetInstanceLockTimeRemaining','UnitRace','GetSpellBookItemInfo','GetContainerNumSlots','C_PetBattles.ChangePet','C_PetBattles.CanActivePetSwapOut','C_PetBattles.GetAbilityInfo','C_PetJournal.GetPetInfoByIndex','C_PetBattles.GetActivePet','C_PetJournal.GetPetLoadOutInfo','IsUsableItem','InteractUnit','PlaceRaidMarker','IsPassiveSpell','UnitReaction','IsAltKeyDown','ReloadUI'}
 		for k,v in pairs(TagsToUnlock) do
 			unlocker(v,true)
 		end
@@ -483,6 +500,10 @@ function br:loadUnlockerAPI()
         if unlocked and br.prevQueueWindow ~= 0 then RunMacroText("/console SpellQueueWindow 0") end
     end
     return unlocked
+end
+
+function NamePlateBaseMixin:GetPreferredInsets()
+	return 1, 1, 1, 1
 end
 
 local Objects = {}
